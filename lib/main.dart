@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.teal,
           centerTitle: true,
         ),
-        body: MyHeader(),
+        body: const MyHeader(),
       ),
     );
   }
