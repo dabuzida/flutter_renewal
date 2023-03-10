@@ -2,6 +2,46 @@ import 'package:flutter/material.dart';
 
 const List<String> _languages = <String>['한국어', 'English', '日本語', 'Español'];
 
+enum Lang {
+  ko('ko', '한국어'),
+  en('en', 'English'),
+  ja('ja', '日本語'),
+  ;
+
+  const Lang(this.code, this.localizedName);
+
+  final String code;
+  final String localizedName;
+
+  static List<String> getList() {
+    return <String>[
+      Lang.ko.localizedName,
+      Lang.en.localizedName,
+      Lang.ja.localizedName,
+    ];
+  }
+
+  static String localize({required String code}) {
+    for (final Lang alzwinLanguage in Lang.values) {
+      if (alzwinLanguage.code == code) {
+        return alzwinLanguage.localizedName;
+      }
+    }
+
+    return '';
+  }
+
+  static Lang? make({required String code}) {
+    for (final Lang alzwinLanguage in Lang.values) {
+      if (alzwinLanguage.code == code) {
+        return alzwinLanguage;
+      }
+    }
+
+    return null;
+  }
+}
+
 class MyHeader extends StatefulWidget {
   const MyHeader({super.key});
 
@@ -15,10 +55,22 @@ class _MyHeaderState extends State<MyHeader> {
   final double _headerFontSize = 14.0;
   final FontWeight _fontWeight = FontWeight.w500;
 
+  Lang x = Lang.en;
+
   @override
   Widget build(BuildContext context) {
     return ListView(
       children: <Widget>[
+        TextButton(
+          onPressed: () {
+            setState(() {
+              x = Lang.ja;
+            });
+          },
+          child: Text(
+            x.localizedName,
+          ),
+        ),
         Container(
           color: Color(0xffffffff),
           // color: const Color(0xFF000000),
@@ -55,6 +107,14 @@ class _MyHeaderState extends State<MyHeader> {
                             _selected = newValue ?? '-';
                           });
                         },
+                        // items: _languages.map<DropdownMenuItem<String>>(
+                        //   (String value) {
+                        //     return DropdownMenuItem<String>(
+                        //       value: value,
+                        //       child: Text(value),
+                        //     );
+                        //   },
+                        // ).toList(),
                         items: _languages.map<DropdownMenuItem<String>>(
                           (String value) {
                             return DropdownMenuItem<String>(
