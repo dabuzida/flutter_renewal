@@ -61,15 +61,45 @@ class _MyHeaderState extends State<MyHeader> {
   Widget build(BuildContext context) {
     return ListView(
       children: <Widget>[
-        TextButton(
-          onPressed: () {
-            setState(() {
-              x = Lang.ja;
-            });
-          },
-          child: Text(
-            x.localizedName,
+        Container(
+          color: Colors.green[100],
+          child: TextButton(
+            onPressed: () {
+              setState(() {
+                x = Lang.ja;
+              });
+            },
+            child: Text(
+              x.localizedName,
+            ),
           ),
+        ),
+        const Divider(
+          color: Colors.red,
+          indent: 200,
+          endIndent: 100,
+          height: 50,
+          thickness: 3,
+        ),
+        Container(
+          color: Colors.red[100],
+          child: TextButton(
+            onPressed: () {
+              setState(() {
+                x = Lang.ja;
+              });
+            },
+            child: Text(
+              x.localizedName,
+            ),
+          ),
+        ),
+        Container(
+          width: 100,
+          height: 100,
+          color: Colors.black,
+          alignment: Alignment.center,
+          child: Text('side super', style: TextStyle(color: Colors.red, fontSize: 30)),
         ),
         Container(
           color: Color(0xffffffff),
